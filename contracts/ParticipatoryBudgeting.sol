@@ -14,10 +14,11 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         string description;
         uint256 votes;
         bool exists;
-        mapping(address => bool) votersByCountry;
+        mapping(address => bool) voters;
     }
     
     mapping(uint256 => Project) public projects;
+    mapping(address => bool) public proposers;
     
     event ProjectProposed(uint256 projectId, address indexed admin, string description);
     event VoteCasted(address indexed voter, uint256 indexed projectId);
@@ -25,12 +26,33 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
     
     constructor() {
     }
-    
+    /**
+     * @notice addVoter is a function that allows a user to vote on a certain project 
+     * @dev it requires the existence of the project and is only executable by the owner of the contract
+     * @param _voter address of the person added to the voters of a project
+     * @param _projectId uint256 reprensenting the id of the project the votr should be added to
+    */
     function addVoter(address _voter, uint256 _projectId) external onlyOwner {
-        projects[_projectId].votersByCountry[_voter] = true;
+        require(projects[_projectId].exists, "Project does not exist");
+        projects[_projectId].voters[_voter] = true;
     }
-    
+
+    /**
+     * @notice addProposer allows a user to make project proposals
+     * @dev this function is only executable by the owner
+     * @param _proposer address of the user allowed to propose
+    */
+    function addProposer(address _proposer) external onlyOwner {
+        proposers[_proposer] = true;
+    }
+
+    /**
+     * @notice proposeProject is a function that allows a user to propose a project
+     * @dev the user must be authorized by the owner before making a proposal
+     * @param _description string describing the project
+    */
     function proposeProject(string memory _description) external {
+        require(proposers[msg.sender] == true, "You are not eligible to propose a project");
         uint256 projectId = totalProjects++;
         projects[projectId].admin = msg.sender;
         projects[projectId].description = _description;
@@ -38,13 +60,17 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         projects[projectId].exists = true;
         emit ProjectProposed(projectId, msg.sender, _description);
     }
-    
+    /**
+     * @notice vote for a project
+     * @dev only users authorized by the owner can vote for the project
+     * @param _projectId id that the voter wants to vote for
+    */
     function vote(uint256 _projectId) external {
         require(projects[_projectId].exists, "Project does not exist");
-        require(!projects[_projectId].votersByCountry[msg.sender], "You are not eligible to vote for this project");
+        require(projects[_projectId].voters[msg.sender], "You are not eligible to vote for this project");
         
         projects[_projectId].votes = projects[_projectId].votes.add(1);
-        projects[_projectId].votersByCountry[msg.sender] = true;
+        projects[_projectId].voters[msg.sender] = false;
         emit VoteCasted(msg.sender, _projectId);
     }
     
