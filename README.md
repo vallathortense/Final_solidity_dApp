@@ -16,4 +16,4 @@ Using Metamask and smart contract on solidity.
 ### Specification
 
 Only some administrators can propose projects.
-Only french voters can vote on the projects related to France.
+Only french voters can vote on the projects related to France.# Final_solidity_dApp
