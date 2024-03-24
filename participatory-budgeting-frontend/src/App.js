@@ -6,6 +6,7 @@ import AddProposerForm from './components/AddProposerForm';
 import ProjectForm from './components/ProjectForm';
 import AddVoterForm from './components/AddVoterForm';
 import VoteForm from './components/VoteForm';
+import ProjectsList from './components/ProjectsList'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <li><Link to="/propose-project">Propose Project</Link></li>
             <li><Link to="/add-voter">Add Voter</Link></li>
             <li><Link to="/vote">Vote</Link></li>
+            <li><Link to="/projectsList">Projects List</Link></li>
           </ul>
         </nav>
         
@@ -27,6 +29,7 @@ function App() {
           <Route path="/propose-project" component={ProjectForm} />
           <Route path="/add-voter" component={AddVoterForm} />
           <Route path="/vote" component={VoteForm} />
+          <Route path="/projectsList" component={ProjectsList} />
         </Switch>
       </div>
     </Router>

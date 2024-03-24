@@ -22,7 +22,7 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
     mapping(address => bool) public proposers;
     
     event ProjectProposed(uint256 projectId, address indexed admin, string description);
-    event VoteCasted(address indexed voter, uint256 indexed projectId);
+    event VoteCasted(address indexed voter, uint256 indexed projectId, uint256 votes);
     event FundsAllocated(uint256 indexed projectId, uint256 amount);
     
     constructor() {
@@ -72,7 +72,7 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         
         projects[_projectId].votes = projects[_projectId].votes.add(1);
         projects[_projectId].voters[msg.sender] = false;
-        emit VoteCasted(msg.sender, _projectId);
+        emit VoteCasted(msg.sender, _projectId, projects[_projectId].votes);
     }
     
     function allocateFunds(uint256 _projectId, uint256 _amount) external onlyOwner {
@@ -94,5 +94,15 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         payable(projects[_projectId].admin).transfer(proportion);
         
         emit FundsAllocated(_projectId, proportion);
+    }
+
+    function getProject(uint256 projectId) public view returns (address, string memory, uint256) {
+        require(projects[projectId].exists, "Project does not exist");
+        Project storage project = projects[projectId];
+        return (project.admin, project.description, project.votes);
+    }
+
+    function getTotalProjects() public view returns (uint256) {
+        return totalProjects;
     }
 }
