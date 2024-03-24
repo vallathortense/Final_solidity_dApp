@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getContract } from '../utils/getContract';
+import './ProjectForm.css';
 
 export default function ProjectForm() {
     const [description, setDescription] = useState('');

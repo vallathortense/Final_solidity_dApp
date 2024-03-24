@@ -12,7 +12,7 @@ export default function AddVoterForm() {
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             await contract.methods.addVoter(projectId, voterAddress).send({ from: accounts[0] });
 
-            setStatusMessage(`Voter ${voterAddress} successfully added to project ${projectId}.`);
+            setStatusMessage(`Voter ${projectId} successfully added to project ${voterAddress}.`);
         } catch (error) {
             console.error("Error adding voter:", error);
             setStatusMessage("Failed to add voter. See console for details.");

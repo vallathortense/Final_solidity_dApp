@@ -1,0 +1,62 @@
+/* ProjectForm.css */
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will center the children elements */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    width: 100%; /* Ensures the form group takes the full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers flex items (like textareas) on the cross axis */
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 90%; /* Adjusted to 90% to provide some padding around the elements */
+    max-width: 500px; /* Keeps the element widths reasonable */
+    padding: 10px;
+    margin: 8px 0; /* Provides a little space above and below */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #008cba;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0; /* Adjusted margin for vertical spacing */
+  }
+  
+  button:hover {
+    background-color: #005f73;
+  }
+  
+  .feedback {
+    width: 90%; /* Matches the input and textarea width for consistency */
+    max-width: 500px; /* Ensures the feedback box doesn't stretch too wide */
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #dff0d8;
+    border: 1px solid #d0e9c6;
+    border-radius: 4px;
+    text-align: left; /* Aligns the feedback text to the left, within the centered box */
+  }
+  
+  .feedback p {
+    margin: 0;
+    font-weight: bold;
+  }
+  
