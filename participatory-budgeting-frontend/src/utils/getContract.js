@@ -1,7 +1,8 @@
 import Web3 from 'web3';
 import ParticipatoryBudgetingABI from '../contracts/ParticipatoryBudgetingABI.json';
 
-const contractAddress = '0xc9CDcE80a136cdAFD65AfFaEE3d408808F00486f';
+// const contractAddress = '0xc9CDcE80a136cdAFD65AfFaEE3d408808F00486f';
+const contractAddress = '0x50d5837B447c5041b2fC15e2d4A1E70a9E539229';
 let participatoryBudgetingContract = null;
 
 export const getContract = () => {
