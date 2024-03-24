@@ -39,15 +39,6 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
     }
 
     /**
-     * @notice addProposer allows a user to make project proposals
-     * @dev this function is only executable by the owner
-     * @param _proposer address of the user allowed to propose
-    */
-    function addProposer(address _proposer) external onlyOwner {
-        proposers[_proposer] = true;
-    }
-
-    /**
      * @notice proposeProject is a function that allows a user to propose a project
      * @dev the user must be authorized by the owner before making a proposal
      * @param _description string describing the project
