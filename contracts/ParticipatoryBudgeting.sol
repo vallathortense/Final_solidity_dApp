@@ -13,6 +13,7 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         address admin;
         string description;
         uint256 votes;
+        uint256 projectId;
         bool exists;
         mapping(address => bool) voters;
     }
