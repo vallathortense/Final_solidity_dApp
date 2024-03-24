@@ -1,38 +1,81 @@
-.App {
+/* Apply to the overall page for consistent padding and box-sizing */
+html, body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+/* Ensures that box-sizing is applied throughout */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Centering the main content vertically and horizontally */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh; /* Use the full viewport height */
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Navigation bar styles */
+nav ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style-type: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+nav li {
+  margin: 0 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: large;
+}
+
+/* Form elements centered with max width */
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 110%;
+}
+
+textarea, button {
+  width: 100%; 
+  max-width: 500px;
+  margin: 10px 0; /* Spacing above and below */
+}
+
+/* Button specific styles */
+button {
+  padding: 30px 15px;
+  border: none;
+  background-color: #007bff;
   color: white;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Center content in the form and feedback */
+.form-content, .feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.feedback {
+  margin-top: 20px;
 }
