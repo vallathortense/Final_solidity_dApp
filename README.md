@@ -6,16 +6,3 @@ Our dApp allows community members to propose budget allocations and citizens to 
 ### Motivations
 
 Traditional budgeting methods lack of transparency and inclusivity, leading to decisions that may not fully reflect the needs and priorities of citizens. The role of our dApp is to empower democracies: empower citizens to engage more directly in decision-making to create more inclusive and responsive political systems. Also, relying on blockchain technology ensure better security of voting.
-
-### Method
-
-Using Metamask and smart contract on solidity.
-
-### Specification
-
-Only some administrators can propose projects.
-Only french voters can vote on the projects related to France.
-
-To incentivize participation: add some NFT rewards.
-
-
