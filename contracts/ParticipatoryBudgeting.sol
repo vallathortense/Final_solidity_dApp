@@ -3,12 +3,17 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./RewardToken.sol";
 
 contract ParticipatoryBudgeting is Ownable(msg.sender) {
     using SafeMath for uint256;
 
     uint256 public totalProjects;
-    
+
+    RewardToken private rewardToken;
+    uint256 amountForProposing = 100 * (10 ** 18); 
+    uint256 amountForVoting = 10 * (10 ** 18); 
+
     struct Project {
         address admin;
         string description;
@@ -25,7 +30,8 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
     event VoteCasted(address indexed voter, uint256 indexed projectId, uint256 votes);
     event FundsAllocated(uint256 indexed projectId, uint256 amount);
     
-    constructor() {
+    constructor(address rewardTokenAddress) {
+        rewardToken = RewardToken(rewardTokenAddress);
     }
     /**
      * @notice addVoter is a function that allows a user to vote on a certain project 
@@ -59,6 +65,8 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         projects[projectId].description = _description;
         projects[projectId].votes = 0;
         projects[projectId].exists = true;
+        // Reward the proposer
+        rewardToken.mint(msg.sender, amountForProposing);
         emit ProjectProposed(projectId, msg.sender, _description);
     }
     /**
@@ -72,6 +80,8 @@ contract ParticipatoryBudgeting is Ownable(msg.sender) {
         
         projects[_projectId].votes = projects[_projectId].votes.add(1);
         projects[_projectId].voters[msg.sender] = false;
+        // Reward the voter
+        rewardToken.mint(msg.sender, amountForVoting);
         emit VoteCasted(msg.sender, _projectId, projects[_projectId].votes);
     }
     
