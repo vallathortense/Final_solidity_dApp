@@ -62,6 +62,8 @@ function vote(uint256 _projectId) external {
 }
 ```
 
+![diagram final solidity](https://github.com/vallathortense/Final_solidity_dApp/assets/95473956/30fafbb4-0e27-433d-8ba5-5d3d4ea9946f)
+
 
 To incentivize participation: add some NFT rewards.
 
