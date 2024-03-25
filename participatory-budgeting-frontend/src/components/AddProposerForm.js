@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getContract } from '../utils/getContract';
+import { getParticipatoryBudgetingContract } from '../utils/getContract';
 
 export default function AddProposerForm() {
     const [address, setAddress] = useState('');
@@ -7,7 +7,7 @@ export default function AddProposerForm() {
 
     const addProposer = async () => {
         try {
-            const contract = getContract(); // Make sure this util returns the instantiated contract
+            const contract = getParticipatoryBudgetingContract(); // Make sure this util returns the instantiated contract
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             await contract.methods.addProposer(address).send({ from: accounts[0] });
 

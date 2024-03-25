@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getContract } from '../utils/getContract';
+import { getParticipatoryBudgetingContract } from '../utils/getContract';
 
 export default function AddVoterForm() {
     const [projectId, setProjectId] = useState('');
@@ -8,7 +8,7 @@ export default function AddVoterForm() {
 
     const addVoter = async () => {
         try {
-            const contract = getContract();
+            const contract = getParticipatoryBudgetingContract();
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             await contract.methods.addVoter(projectId, voterAddress).send({ from: accounts[0] });
 

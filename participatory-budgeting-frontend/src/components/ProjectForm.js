@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getContract } from '../utils/getContract';
+import { getParticipatoryBudgetingContract } from '../utils/getContract';
 import './ProjectForm.css';
 
 export default function ProjectForm() {
@@ -8,7 +8,7 @@ export default function ProjectForm() {
 
     const proposeProject = async () => {
         try {
-            const contract = getContract();
+            const contract = getParticipatoryBudgetingContract();
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             const response = await contract.methods.proposeProject(description).send({ from: accounts[0] });
     

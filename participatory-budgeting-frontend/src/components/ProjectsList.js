@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getContract } from '../utils/getContract';
+import { getParticipatoryBudgetingContract } from '../utils/getContract';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState([]);
   
   useEffect(() => {
     async function loadProjects() {
-      const contract = getContract();
+      const contract = getParticipatoryBudgetingContract();
       const total = await contract.methods.getTotalProjects().call();
       const projectArray = [];
 
